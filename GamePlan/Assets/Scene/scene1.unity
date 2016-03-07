@@ -140,6 +140,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2398368, guid: 617bd4ebdc67b604f97be97c58d73f06, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1131e4af591a7ca479e0be3479b92787, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 617bd4ebdc67b604f97be97c58d73f06, type: 2}
   m_IsPrefabParent: 0
@@ -284,6 +288,10 @@ Prefab:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 2374598, guid: 065ec892223444542b5900202db52cbf, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 406cff69dea8d534b91450f44a00a1f6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 065ec892223444542b5900202db52cbf, type: 2}
   m_IsPrefabParent: 0
@@ -313,7 +321,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.36
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
