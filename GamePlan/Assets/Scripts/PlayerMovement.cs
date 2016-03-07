@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float speed = 1.0f;
+	public float speed = 10.0f;
 
 	// Update is called once per frame
 	void Update () {
@@ -23,16 +23,16 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Translate (Vector3.back * speed);
 		}*/
 
-		if (Input.GetAxis("Horizontal") > 0 ) {
-			transform.Translate (Vector3.right * speed);
-		} else if (Input.GetAxis("Horizontal") < 0 ) {
-			transform.Translate (Vector3.left * speed);
+		if (Input.GetAxisRaw("Horizontal") > 0 ) {
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
+		} else if (Input.GetAxisRaw("Horizontal") < 0 ) {
+			transform.Translate (Vector3.left * speed * Time.deltaTime);
 		}
 
-		if (Input.GetAxis("Vertical") > 0 ) {
-			transform.Translate (Vector3.forward * speed);
-		} else if (Input.GetAxis("Vertical") < 0 ) {
-			transform.Translate (Vector3.back * speed);
+		if (Input.GetAxisRaw("Vertical") > 0 ) {
+			transform.Translate (Vector3.forward * speed * Time.deltaTime);
+		} else if (Input.GetAxisRaw("Vertical") < 0 ) {
+			transform.Translate (Vector3.back * speed * Time.deltaTime);
 		}
 	}
 }
