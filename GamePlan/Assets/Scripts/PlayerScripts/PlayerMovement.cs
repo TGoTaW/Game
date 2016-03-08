@@ -5,10 +5,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float speed = 1.0f;
 	private Vector3 moveDirection = Vector3.zero;
-	Animator animator;
+
 
 	void Start(){
-		animator = GetComponent<Animator> ();
+		
 
 	}
 
@@ -36,14 +36,6 @@ public class PlayerMovement : MonoBehaviour {
 		moveDirection = transform.TransformDirection (moveDirection);
 		moveDirection *= speed;
 		transform.Translate (moveDirection);
-
-		if (Input.GetKey (KeyCode.B)) {
-			
-
-		}
-			
-
-
 
 
 	}

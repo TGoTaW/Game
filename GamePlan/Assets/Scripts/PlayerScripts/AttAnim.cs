@@ -10,7 +10,7 @@ public class AttAnim : StateMachineBehaviour {
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-		if (Input.GetKey (KeyCode.B)) {
+		if (Input.GetKeyDown (KeyCode.B)) {
 			animator.SetTrigger ("Button press");
 		}
 		if (Input.GetButtonDown ("Fire1")) {
