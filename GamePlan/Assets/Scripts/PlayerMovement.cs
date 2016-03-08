@@ -32,9 +32,9 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Translate (Vector3.back * speed);
 		}*/
 
-		moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
+		moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical"));
 		moveDirection = transform.TransformDirection (moveDirection);
-		moveDirection *= speed;
+		moveDirection *= speed * Time.deltaTime;
 		transform.Translate (moveDirection);
 
 		if (Input.GetKey (KeyCode.B)) {
