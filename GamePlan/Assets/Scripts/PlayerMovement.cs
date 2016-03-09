@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		//make it go faster
-		moveDirection *= speed * Time.deltaTime;
+		moveDirection = moveDirection.normalized * speed * Time.deltaTime;
 
 		//do the move
 		transform.Translate (moveDirection, Space.World);
