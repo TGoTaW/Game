@@ -3,11 +3,17 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+	private bool isGrounded;
 	public float speed = 1.0f;
+	public float jumpForce = 10.0f;
 	private Vector3 moveDirection = Vector3.zero;
+	RaycastHit hit;
+	float distanceToGround = 0;
 
 	void Start(){
-
+		if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100.0F)) {
+			distanceToGround = hit.distance;
+		}
 	}
 
 	// Update is called once per frame
@@ -30,9 +36,20 @@ public class PlayerMovement : MonoBehaviour {
 		if(Input.GetButtonDown("Jump")) {
 			Jump();
 		}
+
+		while (distanceToGround >= 1) {
+			transform.Translate (new Vector3 (0, -1.0f, 0));
+		}
 	}
 
 	protected void Jump(){
-		Debug.Log ("This is supposed to be a jump");
+		if (Physics.Raycast(transform.position, -Vector3.up, out hit, 100.0F)) {
+			distanceToGround = hit.distance;
+		}
+		Debug.Log (distanceToGround);
+		if (distanceToGround <= 1) {
+			transform.Translate (new Vector3 (0, jumpForce, 0));
+		}
+
 	}
 }

@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour {
 		if (c == null) {
 			c = GetComponent<Camera> ();
 		}
-		offset = new Vector3 (0.0f, 120.0f, -120.0f);
+		offset = target.transform.position - transform.position;
 	}
 
 	// Update is called once per frame
@@ -29,5 +29,16 @@ public class CameraController : MonoBehaviour {
 			Vector3 destination = transform.position + delta;
 			transform.position = Vector3.SmoothDamp (transform.position, destination, ref velocity, dampTime); 
 		}
+
+		/*float currentAngle = transform.eulerAngles.y;
+		float desiredAngle = target.transform.eulerAngles.y;
+		float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * dampTime);
+
+		Quaternion rotation = Quaternion.Euler(0, angle, 0);
+		transform.position = target.transform.position - (rotation * offset);
+
+		transform.LookAt(target.transform);
+		*/
+
 	}
 }

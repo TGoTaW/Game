@@ -13,11 +13,11 @@ public class RotateCamera : MonoBehaviour {
 
 	private void LateUpdate() {		
 		if (axisInUse == false) {
-			if (Input.GetAxisRaw ("RotateCamera") < 0) {			
+			if (Input.GetAxisRaw ("RotateCamera") < 0) {		
 				transform.RotateAround (target.position, Vector3.up, 90.0f);
 				axisInUse = true;
 
-			} else if (Input.GetAxisRaw ("RotateCamera") > 0) {			
+			} else if (Input.GetAxisRaw ("RotateCamera") > 0) {		
 				transform.RotateAround (target.position, Vector3.up, -90.0f);
 				axisInUse = true;
 			}
