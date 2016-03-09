@@ -33,6 +33,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	protected void Jump(){
-
+		Debug.Log ("This is supposed to be a jump");
 	}
 }
