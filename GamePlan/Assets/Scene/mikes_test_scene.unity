@@ -322,6 +322,10 @@ Prefab:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 113538, guid: 848561fbab72c114eac37bf7c1a53bac, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 848561fbab72c114eac37bf7c1a53bac, type: 2}
   m_IsPrefabParent: 0
@@ -338,6 +342,8 @@ GameObject:
   - 23: {fileID: 860326313}
   - 114: {fileID: 860326317}
   - 95: {fileID: 860326318}
+  - 114: {fileID: 860326319}
+  - 143: {fileID: 860326320}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -378,7 +384,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860326312}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -415,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7155e929278c53478ccfc3fa790fb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 13
 --- !u!95 &860326318
 Animator:
   serializedVersion: 3
@@ -433,6 +439,35 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &860326319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 860326312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a833d4a4022f1449d3b087bac4fd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 10
+--- !u!143 &860326320
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 860326312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &904976409
 Prefab:
   m_ObjectHideFlags: 0
@@ -800,6 +835,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 89644170bbf0d76448cd126596dbc659, type: 2}
+    - target: {fileID: 6538348, guid: 065ec892223444542b5900202db52cbf, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538348, guid: 065ec892223444542b5900202db52cbf, type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 065ec892223444542b5900202db52cbf, type: 2}
   m_IsPrefabParent: 0
