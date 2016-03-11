@@ -2,11 +2,14 @@
 using System.Collections;
 
 public class BasicEnemyScript : MonoBehaviour {
-	private float health;
+	private int health;
+	private Renderer rend;
 	// Use this for initialization
 	void Start () {
 		
-		health = 120;
+		health = 200;
+		rend = gameObject.GetComponent<Renderer> ();
+
 	}
 	
 	// Update is called once per frame
@@ -17,9 +20,21 @@ public class BasicEnemyScript : MonoBehaviour {
 	void OnCollisionEnter (Collision col){
 		
 		if (col.gameObject.tag == "Weapon") {
-			Destroy (gameObject);
+			health -= 40;
+			StartCoroutine (BlinkAnimation());
+			if (health <= 0) {
+
+				Destroy (gameObject);
+			}
 		}
 
 	}
+
+	IEnumerator BlinkAnimation(){
+		rend.material.color = Color.red;
+		yield return new WaitForSeconds (.1f);
+		rend.material.color = Color.green;
+	}
+	
 
 }
