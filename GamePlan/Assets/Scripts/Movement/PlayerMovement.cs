@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	private Vector3 moveDirection = Vector3.zero;
+	public Vector3 moveDirection = Vector3.zero;
 	public float speed = 1.0f;
 
 	void Start(){
@@ -23,4 +23,6 @@ public class PlayerMovement : MonoBehaviour {
 		//do the move
 		transform.Translate (moveDirection, Space.World);
 	}
+
+
 }

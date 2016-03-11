@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Jumping : MonoBehaviour {
 
-	private bool isGrounded;
-	public float jumpHeight = 10.0f;
-	float distanceToGround = 0;
-	RaycastHit hit;
+	public float speed = 6.0f;
+	public float jumpSpeed = 8.0f;
+	public float gravity = 20.0f;
+	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController cc;
+
 
 	// Use this for initialization
 	void Start () {
@@ -15,28 +16,22 @@ public class Jumping : MonoBehaviour {
 			cc = GetComponent<CharacterController> ();
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("Distance To Ground: " + distanceToGround);
-		Debug.Log ("Is Grounded: " +  isGrounded);
+		Debug.Log(cc.isGrounded ? "GROUNDED" : "NOT GROUNDED");
 
-		if (Physics.Raycast (transform.position, Vector3.down, out hit, 100.0F)) {
-			distanceToGround = hit.distance;
-		
-			if (distanceToGround <= 2) {
-				isGrounded = true;
-			}
+		CharacterController controller = GetComponent<CharacterController>();
+		if (controller.isGrounded) {
+			moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+			moveDirection *= speed;
+			if (Input.GetButton("Jump"))
+				moveDirection.y = jumpSpeed;
 		}
-
-		//coming soon (tm)
-		if(Input.GetButtonDown("Jump") && isGrounded) {
-			Jump();
-		}
+		moveDirection.y -= gravity * Time.deltaTime;
+		controller.Move(moveDirection * Time.deltaTime);
 	}
-
-	protected void Jump (){
-		
-		isGrounded = false;
+	protected void Jump(){
+		moveDirection.y = jumpSpeed;
 	}
 }
