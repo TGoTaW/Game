@@ -18,13 +18,13 @@ public class RotateCamera : MonoBehaviour {
 		}
 		if (axisInUse == false) {
 			if (Input.GetAxisRaw ("RotateCamera") < 0) {
-				RotateRelativeToCamera(new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")), Camera.main);
-				//transform.RotateAround (target.position, Vector3.up, 90.0f);
+				//RotateRelativeToCamera(new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")), Camera.main);
+				transform.RotateAround (target.position, Vector3.up, 90.0f);
 				//SmoothLookAt ();
 				axisInUse = true;
 
 			} else if (Input.GetAxisRaw ("RotateCamera") > 0) {		
-				//transform.RotateAround (target.position, Vector3.up, -90.0f);
+				transform.RotateAround (target.position, Vector3.up, -90.0f);
 				//SmoothLookAt ();
 				axisInUse = true;
 			}

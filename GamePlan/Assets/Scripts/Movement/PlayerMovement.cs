@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 		//move faster & evenly in all directions
 		moveDirection = moveDirection.normalized * speed * Time.deltaTime;
 		//do the move
-		transform.Translate (moveDirection, Space.World);
+		transform.Translate (moveDirection,  Space.World);
 	}
 
 
