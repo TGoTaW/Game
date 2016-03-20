@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
 		//face it
 		if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
 			transform.rotation = Quaternion.LookRotation (moveDirection);
+
 		}
 		//move faster & evenly in all directions
 		moveDirection = moveDirection.normalized * speed * Time.deltaTime;
