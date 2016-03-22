@@ -66,6 +66,7 @@ public class CameraController : MonoBehaviour {
 	private Vector3 velocity = Vector3.zero;
 	private Vector3 offset;
 	private Camera c;
+	float yPos;
 
 	// Use this for initialization
 	void Start () {
@@ -76,6 +77,8 @@ public class CameraController : MonoBehaviour {
 			c = GetComponent<Camera> ();
 		}
 		offset = target.transform.position - transform.position;
+
+		yPos = transform.position.y;
 	}
 
 	// Update is called once per frame
@@ -84,7 +87,9 @@ public class CameraController : MonoBehaviour {
 			Vector3 point = c.WorldToViewportPoint (target.position);
 			Vector3 delta = target.position - c.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f, point.z));
 			Vector3 destination = transform.position + delta;
-			transform.position = Vector3.SmoothDamp (transform.position, destination, ref velocity, dampTime); 
+			transform.position = Vector3.SmoothDamp (transform.position, destination, ref velocity, dampTime);
+			transform.position = new Vector3 (transform.position.x, yPos, transform.position.z);
+
 		}
 	}
 }

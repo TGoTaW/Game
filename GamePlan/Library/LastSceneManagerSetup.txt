@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/phils_test_scene.unity
+- path: Assets/Scene/phils_boss_scene.unity
   isLoaded: 1
   isActive: 1
