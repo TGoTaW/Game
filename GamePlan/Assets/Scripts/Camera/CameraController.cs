@@ -3,88 +3,46 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-	public float dampTime = 0.15f;
-	private Transform target;
+	public Transform target;
+	public float lookSmooth = 0.09f;
+	public Vector3 offsetFromTarget = new Vector3 (0, 6, -8);
+	public float xTilt = 10;
 
-	private Vector3 relCameraPos;
-	private float relCameraPosMag;
-	private Vector3 newPos;
-	/*
-	void Awake(){
-		if(target == null) {
-			target = GameObject.Find ("Player").transform;
-		}
-		relCameraPos = transform.position - target.position;
-		relCameraPosMag = relCameraPos.magnitude - 0.5f;
+	Vector3 destination;
+	CharacterController cc;
+	float rotateVelocity = 0;
+
+	void Start(){
+		SetCameraTarget (target);
 	}
 
-	void FixedUpdate(){
-
-		Vector3 standardPos = target.position + relCameraPos;
-		Vector3 abovePos = target.position + Vector3.up * relCameraPosMag;
-		Vector3[] checkpoints = new Vector3[5];
-		checkpoints [0] = standardPos;
-		checkpoints [1] = Vector3.Lerp (standardPos, abovePos, 0.25f);
-		checkpoints [2] = Vector3.Lerp (standardPos, abovePos, 0.5f);
-		checkpoints [3] = Vector3.Lerp (standardPos, abovePos, 0.75f);
-		checkpoints [4] = abovePos;
-
-
-		for (int i = 0; i < checkpoints.Length; i++) {
-			if(ViewingPosCheck(checkpoints[i])){
-				break;
+	public void SetCameraTarget(Transform t){
+		target = t;
+		if (target != null) {
+			if (target.GetComponent<CharacterController> ()) {
+				cc = target.GetComponent<CharacterController> ();
+			} else {
+				Debug.LogError ("The camera's target needs a character controller.");
 			}
+		} else {
+			Debug.LogError ("Your camera needs a target!");
 		}
-
-		transform.position = Vector3.Lerp (transform.position, newPos, dampTime * Time.deltaTime);
-		SmoothLookAt ();
 	}
 
-
-	bool ViewingPosCheck(Vector3 checkPos){
-		RaycastHit hit;
-
-		if (Physics.Raycast(checkPos, target.position - checkPos, out hit, relCameraPosMag)){
-			if(hit.transform != target){
-				return false;
-			}
-		}
-		newPos = checkPos;
-		return true;
+	void LateUpdate(){
+		MoveToTarget();
+		LookAtTarget ();
 	}
 
-	void SmoothLookAt(){
-		Vector3 relPlayerPosition = target.position - transform.position;
-		Quaternion lookAtRotation = Quaternion.LookRotation (relPlayerPosition, Vector3.up);
-		transform.rotation = Quaternion.Lerp (transform.rotation, lookAtRotation, dampTime * Time.deltaTime);
+	void MoveToTarget(){
+		destination = cc.TargetRotation * offsetFromTarget;
+		destination += target.position;
+		transform.position = destination;
 	}
 
-
-*/
-
-
-	private Vector3 velocity = Vector3.zero;
-	private Vector3 offset;
-	private Camera c;
-
-	// Use this for initialization
-	void Start () {
-		if(target == null) {
-			target = GameObject.Find ("Player").transform;
-		}
-		if (c == null) {
-			c = GetComponent<Camera> ();
-		}
-		offset = target.transform.position - transform.position;
-	}
-
-	// Update is called once per frame
-	void Update () {
-		if (target) {
-			Vector3 point = c.WorldToViewportPoint (target.position);
-			Vector3 delta = target.position - c.ViewportToWorldPoint (new Vector3 (0.5f, 0.5f, point.z));
-			Vector3 destination = transform.position + delta;
-			transform.position = Vector3.SmoothDamp (transform.position, destination, ref velocity, dampTime); 
-		}
+	void LookAtTarget(){
+		float eulerYAngle = Mathf.SmoothDampAngle (
+				transform.eulerAngles.y, target.eulerAngles.y, ref rotateVelocity, lookSmooth );
+		transform.rotation = Quaternion.Euler (transform.eulerAngles.x, eulerYAngle, 0);
 	}
 }
